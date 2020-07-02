@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "782544260592",
+    "firebase_url": "https://diemdanh-1976b.firebaseio.com",
+    "project_id": "diemdanh-1976b",
+    "storage_bucket": "diemdanh-1976b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:782544260592:android:78169c887ef7c54297a135",
+        "android_client_info": {
+          "package_name": "com.example.doandiemdanh"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "782544260592-lbh3ugckkk9ko4bv4g17hujqd7umio15.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.doandiemdanh",
+            "certificate_hash": "d6f69b68aa354f1fc487b7bffdb7c4d31979ebe9"
+          }
+        },
+        {
+          "client_id": "782544260592-27fi9qrbc0v54jm8djbci7j33bf9ingl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQl2d-L5CocV8e29r_d3sHK_Gtd2Jg4Ic"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "782544260592-27fi9qrbc0v54jm8djbci7j33bf9ingl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

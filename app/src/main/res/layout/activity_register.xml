@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".Register">
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="164dp"
+        android:layout_height="163dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+
+
+        app:srcCompat="@drawable/abc" />
+
+    <EditText
+        android:id="@+id/email_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/avatar"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="40dp"
+        android:inputType="textEmailAddress"
+        android:hint= "email"/>
+
+    <EditText
+        android:id="@+id/password_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/email_editText"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="10dp"
+        android:inputType="textPassword"
+        android:hint ="password"
+         />
+
+
+    <EditText
+        android:id="@+id/fullname_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+
+        android:layout_below="@id/password_editText"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="5dp"
+
+        android:inputType="textPersonName"
+        android:hint="Ho va Ten"/>
+
+    <EditText
+        android:id="@+id/profession_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/fullname_editText"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="10dp"
+        android:text="Sinh Vien"
+        android:enabled="false"
+
+       />
+
+    <EditText
+        android:id="@+id/location_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/profession_editText"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="5dp"
+        android:inputType="textPersonName"
+        android:hint="dia chi"
+         />
+
+    <EditText
+        android:id="@+id/phone_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/location_editText"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="5dp"
+        android:hint="so dien thoai"
+        android:inputType="textPersonName"
+         />
+
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="250dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_shape"
+        android:layout_below="@+id/phone_editText"
+        android:text="Đăng ký"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+         />
+
+
+</RelativeLayout>
