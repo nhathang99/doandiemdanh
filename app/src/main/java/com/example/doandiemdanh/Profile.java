@@ -50,9 +50,7 @@ public class Profile extends AppCompatActivity {
 
         database =FirebaseDatabase.getInstance();
          //  userRef = database.getReference(USERS);
-
-
-        userRef.addValueEventListener(new ValueEventListener() {
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot Snapshot) {
                 Log.d("profile - id", "onDataChange: "+ mAuth.getUid());
@@ -62,13 +60,9 @@ public class Profile extends AppCompatActivity {
                 workplacetextview.setText(user.getLocation());
                 emailtextview.setText(user.getEmail());
                 phonetextview.setText(user.getPhone());
-
                 }
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 

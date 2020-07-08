@@ -22,7 +22,7 @@ import android.widget.Button;
 
 
 public class HomeActivity extends AppCompatActivity {
-    private Button btndiemdanh,btncreateclass,btnlist,btnprofile,btnlogout;
+    private Button btndiemdanh,btncreateclass,btnlist,btnprofile,btnlogout,btnlisclass;
     private   FirebaseAuth mAuth = FirebaseAuth.getInstance();
     private static  final String USERS = "user";
 
@@ -42,6 +42,7 @@ public class HomeActivity extends AppCompatActivity {
         btncreateclass = findViewById(R.id.btn_createclass);
         btnlist = findViewById(R.id.btn_list);
         btnlogout = findViewById(R.id.btn_logout);
+        btnlisclass = findViewById(R.id.btn_lisclass);
 
         btnprofile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,6 +54,7 @@ public class HomeActivity extends AppCompatActivity {
         if(getIntent().getExtras().get("user").equals("Sinh Vien")){
             btncreateclass.setVisibility(View.INVISIBLE);
             btnlist.setVisibility(View.INVISIBLE);
+            btnlisclass.setVisibility(View.INVISIBLE);
         }
         else{
 
@@ -73,15 +75,27 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        btndiemdanh.setOnClickListener(new View.OnClickListener() {
+
+        btncreateclass.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(HomeActivity.this, DiemdanhActivity.class));
+                startActivity(new Intent(HomeActivity.this, TaoLopActivity.class));
             }
         });
 
+        btnlisclass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, gvActivity.class));
+            }
+        });
 
+        btndiemdanh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, ListclassActivity.class));
+            }
+        });
 
     }
 

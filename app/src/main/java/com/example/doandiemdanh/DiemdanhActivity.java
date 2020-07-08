@@ -1,5 +1,6 @@
 package com.example.doandiemdanh;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -20,36 +21,53 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 public class DiemdanhActivity extends AppCompatActivity {
     EditText Edittextkinhdo, Edittextvido;
-    TextView Textviewdiachi;
-    Button getLocation;
+    TextView end, start;
+    TextView tenmon;
+    Button getLocation,buttondiemdanh;
 
     public LocationManager locationManager;
     public LocationListener locationListener = new myLocationListener();
     String lat,lon;
-
+    courses Courses;
     private  boolean gps_enable = false;
     private  boolean network_enable = false;
-
+    FirebaseAuth mAuth;
     // to generate address
     Geocoder geocoder;
     List<Address> myaddress;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diemdanh);
-        Edittextvido = findViewById(R.id.Edittext_vido);
-        Edittextkinhdo = findViewById(R.id.Edittext_kinhdo);
-        Textviewdiachi = findViewById(R.id.diachi_textview);
+        //Edittextvido = findViewById(R.id.Edittext_vido);
+        //Edittextkinhdo = findViewById(R.id.Edittext_kinhdo);
+        start = findViewById(R.id.start);
         getLocation = findViewById(R.id.button);
+        tenmon = findViewById(R.id.tenmon);
+        end = findViewById(R.id.end);
         locationManager = (LocationManager)this.getSystemService(Context.LOCATION_SERVICE);
 
         getLocation.setOnClickListener(new View.OnClickListener() {
@@ -60,23 +78,28 @@ public class DiemdanhActivity extends AppCompatActivity {
         });
         checklocationPermission();
 
-    }
+        String ten = getIntent().getExtras().get("class").toString();
+
+        tenmon.setText(ten);
+        mAuth = FirebaseAuth.getInstance();
+        setDataToView();
+        }
 
     class myLocationListener implements LocationListener{
 
         @Override
         public void onLocationChanged(Location location) {
-            Toast.makeText(DiemdanhActivity.this, "run"+lat + lon,
-                    Toast.LENGTH_SHORT).show();
-            Log.d("my_location", "onLocationChanged: "+lat + lon);
-            if(location!=null)
-
+            try {
+                diemDanh(location);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
             lat=""+location.getLatitude();
             lon = "" +location.getLongitude();
-            Toast.makeText(DiemdanhActivity.this, "run"+lat + lon,
-                    Toast.LENGTH_SHORT).show();
-            Edittextvido.setText(lat);
-            Edittextkinhdo.setText(lon);
+            //Edittextvido.setText(lat);
+            //Edittextkinhdo.setText(lon);
+
+
 
             geocoder = new Geocoder(DiemdanhActivity.this, Locale.getDefault());
             locationManager.removeUpdates(locationListener);
@@ -87,8 +110,8 @@ public class DiemdanhActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            String Textviewdiachi1 = myaddress.get(0).getAddressLine(0);
-            Textviewdiachi.setText(Textviewdiachi1);
+           // String Textviewdiachi1 = myaddress.get(0).getAddressLine(0);
+
         }
 
         @Override
@@ -138,17 +161,12 @@ public class DiemdanhActivity extends AppCompatActivity {
             }else{
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, locationListener);
             }
-
-
         }
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0, locationListener);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
         if(network_enable)
         {
             locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,0,0,locationListener);
 
         }
-
     }
     private boolean checklocationPermission(){
         int location = ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION);
@@ -168,5 +186,97 @@ public class DiemdanhActivity extends AppCompatActivity {
             return true;
 
     }
+
+    public void diemDanh(Location location) throws ParseException {
+        double x = location.getLatitude();
+        double y = location.getLongitude();
+        Calendar calendar = Calendar.getInstance();
+        Date now1 = calendar.getTime();
+
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        String now2 = format.format(now1);
+        Date now = format.parse(now2);
+
+        if ((x > 10.8703783 && x < 10.879399) && (y > 106.8060374 && y<106.8113543)){
+            String startstr = start.getText().toString();
+            String endstr = end.getText().toString();
+            Date starttime = format.parse(startstr);
+            Date endtime = format.parse(endstr);
+
+            if(now.after(starttime) && now.before(endtime)){
+                diemDanhToDb();
+
+            }else {
+                Toast.makeText(getApplicationContext(), "Điểm danh sai giờ!", Toast.LENGTH_LONG).show();
+
+            }
+        }
+        else {
+            Toast.makeText(getApplicationContext(), "Điểm danh sai vị trí!", Toast.LENGTH_LONG).show();
+        }
+
+    }
+
+    public void diemDanhToDb(){
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("mamon", tenmon.getText().toString());
+        map.put("userid", mAuth.getUid());
+        FirebaseDatabase.getInstance().getReference().child("user_class").push().setValue(map)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.i("abc", "onComplete: ");
+
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Log.i("abc", "onFailure " + e.toString());
+            }
+        }).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(getApplicationContext(), "Điểm danh thành công!", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void setDataToView(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("courses");
+
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String starttime = "";
+                String endtime ="";
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    Courses = ds.getValue(courses.class);
+                    if (Courses.getmamonhoc().equals(tenmon.getText())){
+                        switch (Courses.getstartime()){
+                            case 0:
+                                starttime = "22:30:00";
+                                endtime = "23:59:00";
+                                break;
+                            case 1:
+                                starttime = "13:00:00";
+                                endtime = "17:30:00";
+                                break;
+                        }
+                        end.setText(endtime);
+                        start.setText(starttime);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
 
 }

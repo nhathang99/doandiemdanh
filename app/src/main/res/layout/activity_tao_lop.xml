@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TaoLopActivity">
+
+
+
+    <ImageView
+        android:id="@+id/avatar"
+        android:layout_width="164dp"
+        android:layout_height="163dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        app:srcCompat="@drawable/abc" />
+
+    <EditText
+        android:id="@+id/MaMonHoc_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/avatar"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="30dp"
+        android:inputType="textEmailAddress"
+        android:hint= "Mã Môn Học"
+        />
+
+
+    <EditText
+        android:id="@+id/TenMonHoc_editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_below="@id/MaMonHoc_editText"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="30dp"
+        android:inputType="textEmailAddress"
+        android:hint= "Tên Môn Học"
+        />
+    <Spinner
+        android:id="@+id/gio"
+        android:layout_width="150sp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginTop="30dp"
+        android:outlineProvider="bounds"
+        android:layout_below="@id/TenMonHoc_editText"
+        android:isScrollContainer="true"
+        />
+
+    <Button
+        android:id="@+id/taolop_button"
+        android:layout_width="250dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="27dp"
+        android:layout_marginEnd="27dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/button_shape"
+        android:layout_below="@+id/gio"
+        android:textColor="@android:color/background_light"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Tạo lớp"
+        />
+</RelativeLayout>

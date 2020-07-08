@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btn_profile"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="27dp"
         android:layout_marginEnd="27dp"
@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/btn_diemdanh"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="27dp"
         android:layout_marginEnd="27dp"
@@ -48,27 +48,41 @@
         android:text="Tạo Lớp" />
 
     <Button
-        android:id="@+id/btn_list"
+    android:id="@+id/btn_list"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true"
+    android:layout_below="@id/btn_createclass"
+    android:layout_marginTop="40dp"
+    android:layout_marginStart="60dp"
+    android:layout_marginLeft="27dp"
+    android:layout_marginEnd="27dp"
+    android:layout_marginRight="10dp"
+    android:background="#336699"
+    android:text="Danh sách SV" />
+
+    <Button
+        android:id="@+id/btn_lisclass"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/btn_createclass"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/btn_list"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="27dp"
         android:layout_marginEnd="27dp"
         android:layout_marginRight="10dp"
         android:background="#336699"
+        android:text="Danh sách lớp học" />
 
-        android:text="Danh sách SV " />
 
     <Button
         android:id="@+id/btn_logout"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_below="@id/btn_list"
-        android:layout_marginTop="50dp"
+        android:layout_below="@id/btn_lisclass"
+        android:layout_marginTop="40dp"
         android:layout_marginStart="60dp"
         android:layout_marginLeft="27dp"
         android:layout_marginEnd="27dp"

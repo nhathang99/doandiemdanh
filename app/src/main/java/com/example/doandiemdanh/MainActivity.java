@@ -36,6 +36,35 @@ public class MainActivity extends AppCompatActivity {
     private final  String TAG = "MainActivity";
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth = FirebaseAuth.getInstance();
+        if(mAuth.getUid() != null){
+            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference userRef = rootRef.child("user").child(mAuth.getUid());
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot Snapshot) {
+                    Log.d("profile - id", "onDataChange: "+ mAuth.getUid());
+                    User user = Snapshot.getValue(User.class);
+                    Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("user",user.getProfession());
+                    intent.putExtras(bundle);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -45,10 +74,6 @@ public class MainActivity extends AppCompatActivity {
         editTextUsername = findViewById(R.id.editTextUsername);
         btndangky = findViewById(R.id.btndangky);
         btndangnhap = findViewById(R.id.btndangnhap);
-
-
-        mAuth = FirebaseAuth.getInstance();
-
         btndangnhap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,7 +105,6 @@ public class MainActivity extends AppCompatActivity {
                                             intent.putExtras(bundle);
                                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                                             startActivity(intent);
-
                                         }
 
 
@@ -107,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, Register.class));
             }
         });
-
 
 
 
