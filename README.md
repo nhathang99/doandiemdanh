@@ -6,9 +6,13 @@ B2: import code vào Android Studio để chạy trên điện thoại(hoặc m�
 B3: sau khi cài đặt thành công tiến hành test app
 
 CÁC BƯỚC TEST APP
+
 App có 2 quyền truy cập: Sinh Viên, Giảng Viên
+
 Khi mở app xuất hiện màn hình trang chủ: 
+
 B1: Nhập thông tin (nhập đầy đủ và đúng thông tin nếu không sẽ nhận thông báo lỗi)
+
 B2: Ấn vào nút đăng nhập 
   - nếu đăng nhập bằng tài khoản sinh viên sẽ hiện ra màn hình dành cho sinh viên trong đó có: Xem trang cá nhân, điểm danh và đăng xuất
       + Ấn vào xem trang cá nhân sẽ hiện ra thông tin sinh viên
