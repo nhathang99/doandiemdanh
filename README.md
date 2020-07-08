@@ -1,6 +1,8 @@
 # doandiemdanh
 B1: Tải code về máy 
+
 B2: import code vào Android Studio để chạy trên điện thoại(hoặc máy ảo)
+
 B3: sau khi cài đặt thành công tiến hành test app
 
 CÁC BƯỚC TEST APP
