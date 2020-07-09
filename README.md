@@ -22,11 +22,11 @@ Khi mở app xuất hiện màn hình trang chủ:
 B1: Nhập thông tin (nhập đầy đủ và đúng thông tin nếu không sẽ nhận thông báo lỗi)
 
 B2: Ấn vào nút đăng nhập 
-  - nếu đăng nhập bằng tài khoản sinh viên sẽ hiện ra màn hình dành cho sinh viên trong đó có: Xem trang cá nhân, điểm danh và đăng xuất
+  - nếu đăng nhập bằng tài khoản sinh viên sẽ hiện ra màn hình dành cho sinh viên trong đó có: Đăng ký, xem trang cá nhân, điểm danh và đăng xuất
       + Ấn vào xem trang cá nhân sẽ hiện ra thông tin sinh viên
       + Ấn vào điểm danh, app sẽ tiến hành điểm danh nếu thành công sẽ hiển thị thông báo cho biết bạn đã điểm danh thành công và truyền tên sinh viên vào danh sách lớp học trong dssv
       + Ấn vào đăng xuất, app sẽ chuyển về màn hình trang chủ
-  - nếu đăng nhập bằng tài khoản giảng viên sẽ hiện ra màn hình dành cho giảng viên trong đó có: Xem trang cá nhân, tạo lớp, danh sách SV, danh sách lớp học, đăng ký, đăng xuất.
+  - nếu đăng nhập bằng tài khoản giảng viên sẽ hiện ra màn hình dành cho giảng viên trong đó có: Xem trang cá nhân, tạo lớp, danh sách SV, danh sách lớp học, đăng xuất.
       + Ấn vào xem trang cá nhân sẽ hiện ra thông tin giảng viên
       + Ấn vào tạo lớp sẽ hiện ra màn hình để tạo lớp trong đó: nhạp vào thông tin mã môn học, tên môn học và chọn giờ lớp học sau đó ấn tạo lớp.
       + Ấn vào danh sách sinh viên sẽ hiện ra những sinh viên đã điểm danh thành công.
