@@ -8,8 +8,8 @@ B3: sau khi cài đặt thành công tiến hành test app
 CÁC BƯỚC TEST APP
 
 App có 2 quyền truy cập: Sinh Viên, Giảng Viên
-Tài khoản để truy cập quyền giảng viên:
-Tài khoản để truy cập quyền sinh viên:
+Tài khoản để truy cập quyền giảng viên:nhathang99@gmail.com
+Tài khoản để truy cập quyền sinh viên:nga@gmail.com
 
 Khi mở app xuất hiện màn hình trang chủ: 
 
